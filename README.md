@@ -1,3 +1,10 @@
+# Motivation
+This simple behavior tree implementation was done out of curiosity for a game I'm currently working on, just to get the basics down of how behavior
+trees work.
+
+# Testing
+This repo is untested and should therefore not be used uncritically.
+
 # BehaviorTree-Lite
 A basic behavior tree implementation with the most common nodes. It contains a builder that implements the flow-builder-pattern for accessibility.
 The builder is also context aware, meaning that each node is automatically changing in- and out of the correct context. As an example, a decorator node
@@ -8,9 +15,11 @@ parent from earlier. This helps immensly in writing clean and easily understanda
 the entire type reference chain of where it currently is in context through generics in memory. This however is generally not a problem, since 
 behavior trees are generally static and only built once at start-up. 
 
-# Motivation
-This simple behavior tree implementation was done out of curiosity for a game I'm currently working on, just to get the basics down of how behavior
-trees work.
-
-# Testing
-This repo is untested and should therefore not be used uncritically.
+# Builder example
+```csharp
+BT behavior = Begin<Sequence>()
+    .Sequence()
+        .Is(static (context) => context.Get<int>("input") > 1)
+        .End()
+    .Build();
+```
